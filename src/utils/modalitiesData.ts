@@ -48,8 +48,8 @@ export const modalitiesData: Record<string, ModalityInfo> = {
  },
 
  "Kings League": {
-   atletas: "Elenco variável (Liga de Futebol Alternativo)",
+   atletas: "Guilherme Monagatti, Caio Catroca, Murillo Donato, Ryan Lima, Matheus Ayosa, João Pelegrini, Gabriel Pastuch, Victor Hugo, Matheus Dedo, Jeffinho, Lipão, Leleti, Andrey Batata",
    conquistas: "Participação na edição inaugural da Kings League Americas",
-   proximasDatas: "Temporada 2 - Setembro 2024",
+   proximasDatas: "Kings League Brazil",
  },
 };

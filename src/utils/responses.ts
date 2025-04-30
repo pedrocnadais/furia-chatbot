@@ -21,7 +21,7 @@ export const responses: Record<string, string> = {
  `.trim(),
 
   loja: `
- Confira a loja oficial da FURIA Esports:
+ Confira as ofertas na nossa loja oficial:
  https://store.furia.gg/
  `.trim(),
 
@@ -30,9 +30,7 @@ Fundadores da FURIA Esports: Jaime Pádua, André Akkari, Cristian Guedes, Nicho
 `.trim(),
 
   contato: `
-Entre em contato com a FURIA Esports:
-- E-mail: contact@furia.gg
-- Instagram: @furia
-- Twitter: @FURIA
+Entre em contato conosco através dos nossos canais:
+contact@furia.gg ou @furia no Instagram e X
  `.trim(),
 };

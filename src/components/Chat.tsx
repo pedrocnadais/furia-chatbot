@@ -26,7 +26,6 @@ export default function Chat() {
   const [menuStack, setMenuStack] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  // Auto scroll
   useEffect(() => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -37,13 +36,26 @@ export default function Chat() {
 
     const lowerText = text.toLowerCase();
 
-    // Mostrar loading "..."
     const loadingMessage: Message = { sender: "bot", text: "..." };
     setMessages((prev) => [...prev, loadingMessage]);
     await new Promise((resolve) => setTimeout(resolve, 500));
     setMessages((prev) => prev.filter((msg) => msg.text !== "..."));
 
-    // Se clicar em "Voltar"
+    // ✅ Corrigido: Atletas do menu principal
+    const isAtletasFromMainMenu =
+      lowerText === "atletas" &&
+      (!selectedModality || menuStack.length === 0 || messages.at(-2)?.text?.includes("o que você gostaria de saber?"));
+
+    if (isAtletasFromMainMenu) {
+      setSelectedModality(null);
+      const botReply: Message = {
+        sender: "bot",
+        text: responses["todos os atletas"], // novo nome da key
+      };
+      setMessages((prev) => [...prev, botReply]);
+      return;
+    }
+
     if (lowerText === "voltar") {
       if (menuStack.length > 0) {
         const previousMenu = menuStack[menuStack.length - 1];
@@ -67,7 +79,6 @@ export default function Chat() {
       }
     }
 
-    // Se clicar em "Modalidades"
     if (lowerText === "modalidades") {
       setSelectedModality(null);
       setMenuStack([]);
@@ -75,7 +86,6 @@ export default function Chat() {
       return;
     }
 
-    // Se clicar numa modalidade
     if (modalitiesList.includes(text)) {
       setSelectedModality(text);
       setMenuStack((prev) => [...prev, "modalidades"]);
@@ -88,7 +98,6 @@ export default function Chat() {
       return;
     }
 
-    // Se existe modalidade ativa + subopção clicada
     if (selectedModality && ["atletas", "conquistas", "próximas datas"].includes(lowerText)) {
       const modalityInfo = modalitiesData[selectedModality];
 
@@ -119,7 +128,6 @@ export default function Chat() {
       return;
     }
 
-    // Resposta padrão (menu principal ou geral)
     const botReplyText =
       responses[lowerText] || "Desculpe, não entendi. Selecione uma das opções disponíveis.";
 
@@ -172,7 +180,7 @@ export default function Chat() {
             onOptionClick={(option) => sendMessage(option)}
           />
         ))}
-        <div ref={messagesEndRef} /> {/* marcador para scroll automático */}
+        <div ref={messagesEndRef} />
       </div>
       <div className="mt-4 flex">
         <input

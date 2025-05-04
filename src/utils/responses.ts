@@ -10,7 +10,7 @@ export const modalitiesList = [
 ];
 
 export const responses: Record<string, string> = {
-  atletas: `
+  "todos os atletas": `
  Todos os nossos atletas:
  Ayu, FalleN, FelipoX, fkD, Guigo, havoc, heat, HerdsZ, ImMadness, JoJo, Keon, Kheyze, KSCERATO, Lusty, molodoy, mwzera, nade, raafa, sparkingg, Tatu, Tutsz, Vaxlon, yanxnz, yuurih, YEKINDAR, drufinho, lostt, cgg9, Jv92  
  `.trim(),
